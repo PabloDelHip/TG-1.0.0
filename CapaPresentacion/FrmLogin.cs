@@ -30,6 +30,7 @@ namespace CapaPresentacion
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
+
             //if(cm.FechaVencimiento=="")
             //{
             //    cm.ClaveProducto = "txt";

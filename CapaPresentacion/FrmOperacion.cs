@@ -1055,9 +1055,9 @@ namespace CapaPresentacion
                         cls_generales.EnviarCorreo(email, textoCorreo, "venta Total Gym", "");
                     }
                    
-                    //string respuestaSMS = cls_generales.enviarSMS(mktCelular.Text, textoSMS.ToString());
+                    string respuestaSMS = cls_generales.enviarSMS(mktCelular.Text, textoSMS.ToString());
 
-                    //MessageBox.Show(respuestaSMS);
+                    MessageBox.Show(respuestaSMS);
                     LimpiaFormulario();
                     lista_datos_venta.Clear();
                     dtgVentas.Rows.Clear();

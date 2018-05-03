@@ -9,7 +9,8 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="FechaVencimiento" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">
+</Value>
     </Setting>
     <Setting Name="TituloTicket" Type="System.String" Scope="User">
       <Value Profile="(Default)">ESTO VA A SER UN TITULO LARGO PARA VER QUE PASA</Value>
