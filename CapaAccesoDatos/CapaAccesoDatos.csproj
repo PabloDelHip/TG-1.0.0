@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClsManejador.cs" />
+    <Compile Include="ClsManejador2.cs" />
     <Compile Include="ClsParametros.cs" />
+    <Compile Include="ClsParametros2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings1.Designer.cs">
       <AutoGen>True</AutoGen>

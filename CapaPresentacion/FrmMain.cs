@@ -391,5 +391,68 @@ namespace CapaPresentacion
             FrmCancelarTicket abrir = new FrmCancelarTicket("Imprimir");
             abrir.ShowDialog();
         }
+
+        private void activarSMSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                cambios cm = new cambios();
+
+
+                //Recupero detalles de serial desde el servidor
+                ClsSerial clsSerial = new ClsSerial();
+                clsSerial.ClaveConexion = cm.ClaveProducto;
+                DataTable respuestaTabla = clsSerial.RecuperarSerial();
+
+                if (respuestaTabla.Rows.Count == 1)
+                {
+                    //recupero el contenido de la unica fila del DataTable 
+                    DataRow fila = respuestaTabla.Rows[0];
+                    bool estadoMensajesSMS = (fila["estadoMensajesSMS"].ToString()) == "True" ? true : false;
+
+
+                    if (estadoMensajesSMS)  //examino el estado de la clave
+                    {
+
+                        //Modifico el estado de la clave 
+                        clsSerial.EstadoMensajesSMS = false;
+                        clsSerial.ModificarEnSerial_EstadoMensajesSMS();
+
+
+                        //Guardo valores en el archivo .settings local
+                        DataTable otraRespuestaTabla = clsSerial.RecuperarSerial();
+                        DataRow otraFila2 = otraRespuestaTabla.Rows[0];
+                        cm.ClaveProducto = otraFila2["claveConexion"].ToString();
+                        cm.FechaVencimiento = otraFila2["fechaVencimientoClaveConexion"].ToString();
+                        cm.NumeroMensajesSMS = Int32.Parse(otraFila2["numeroMensajesSMS"].ToString()) + cm.NumeroMensajesSMS;
+                        //cm.NumeroMensajesSMS = Int32.Parse(otraFila2["numeroMensajesSMS"].ToString());
+                        cm.Save();
+                        cm.Reload();
+
+                        MessageBox.Show("Se han activado los SMS", "Activar SMS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        MessageBox.Show("Clave producto " + cm.ClaveProducto + " Número de mensajes disponibles  " + cm.NumeroMensajesSMS);
+
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("No es posible reactivar SMS");
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("No es posible reactivar SMS por el momento");
+                }
+            }
+
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+ 
+        }
     }
 }

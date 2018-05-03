@@ -53,6 +53,7 @@
             this.retirarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movimientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelarTicketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimirTicketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lockersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.operacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +63,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ptbImagenSocio = new System.Windows.Forms.PictureBox();
             this.pPrincipal = new System.Windows.Forms.Panel();
-            this.imprimirTicketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.activarSMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -83,7 +85,8 @@
             this.cajaToolStripMenuItem,
             this.ventasToolStripMenuItem,
             this.lockersToolStripMenuItem,
-            this.operacionesToolStripMenuItem});
+            this.operacionesToolStripMenuItem,
+            this.sMSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1370, 24);
@@ -190,28 +193,28 @@
             // textoDeEmailsToolStripMenuItem
             // 
             this.textoDeEmailsToolStripMenuItem.Name = "textoDeEmailsToolStripMenuItem";
-            this.textoDeEmailsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.textoDeEmailsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.textoDeEmailsToolStripMenuItem.Text = "Texto de Emails";
             this.textoDeEmailsToolStripMenuItem.Click += new System.EventHandler(this.textoDeEmailsToolStripMenuItem_Click);
             // 
             // emailToolStripMenuItem
             // 
             this.emailToolStripMenuItem.Name = "emailToolStripMenuItem";
-            this.emailToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.emailToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.emailToolStripMenuItem.Text = "Email";
             this.emailToolStripMenuItem.Click += new System.EventHandler(this.emailToolStripMenuItem_Click);
             // 
             // conexionToolStripMenuItem
             // 
             this.conexionToolStripMenuItem.Name = "conexionToolStripMenuItem";
-            this.conexionToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.conexionToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.conexionToolStripMenuItem.Text = "Conexion";
             this.conexionToolStripMenuItem.Click += new System.EventHandler(this.conexionToolStripMenuItem_Click);
             // 
             // ticketToolStripMenuItem
             // 
             this.ticketToolStripMenuItem.Name = "ticketToolStripMenuItem";
-            this.ticketToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.ticketToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.ticketToolStripMenuItem.Text = "Ticket";
             this.ticketToolStripMenuItem.Click += new System.EventHandler(this.ticketToolStripMenuItem_Click);
             // 
@@ -277,10 +280,17 @@
             this.cancelarTicketToolStripMenuItem.Text = "Cancelar ticket";
             this.cancelarTicketToolStripMenuItem.Click += new System.EventHandler(this.cancelarTicketToolStripMenuItem_Click);
             // 
+            // imprimirTicketToolStripMenuItem
+            // 
+            this.imprimirTicketToolStripMenuItem.Name = "imprimirTicketToolStripMenuItem";
+            this.imprimirTicketToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.imprimirTicketToolStripMenuItem.Text = "Imprimir ticket";
+            this.imprimirTicketToolStripMenuItem.Click += new System.EventHandler(this.imprimirTicketToolStripMenuItem_Click);
+            // 
             // ventasToolStripMenuItem
             // 
             this.ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
-            this.ventasToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.ventasToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.ventasToolStripMenuItem.Text = "Ventas";
             this.ventasToolStripMenuItem.Click += new System.EventHandler(this.ventasToolStripMenuItem_Click);
             // 
@@ -366,12 +376,20 @@
             this.pPrincipal.Size = new System.Drawing.Size(811, 448);
             this.pPrincipal.TabIndex = 10;
             // 
-            // imprimirTicketToolStripMenuItem
+            // sMSToolStripMenuItem
             // 
-            this.imprimirTicketToolStripMenuItem.Name = "imprimirTicketToolStripMenuItem";
-            this.imprimirTicketToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.imprimirTicketToolStripMenuItem.Text = "Imprimir ticket";
-            this.imprimirTicketToolStripMenuItem.Click += new System.EventHandler(this.imprimirTicketToolStripMenuItem_Click);
+            this.sMSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.activarSMSToolStripMenuItem});
+            this.sMSToolStripMenuItem.Name = "sMSToolStripMenuItem";
+            this.sMSToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.sMSToolStripMenuItem.Text = "SMS";
+            // 
+            // activarSMSToolStripMenuItem
+            // 
+            this.activarSMSToolStripMenuItem.Name = "activarSMSToolStripMenuItem";
+            this.activarSMSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.activarSMSToolStripMenuItem.Text = "Activar SMS";
+            this.activarSMSToolStripMenuItem.Click += new System.EventHandler(this.activarSMSToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -435,5 +453,7 @@
         private System.Windows.Forms.ToolStripMenuItem ticketToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imprimirTicketToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sMSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem activarSMSToolStripMenuItem;
     }
 }

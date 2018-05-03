@@ -23,7 +23,8 @@ namespace CapaAccesoDatos
         //Data source = 192.168.0.102; Initial Catalog = TGC; User Id = tgcontrol; password=gym2017
         //SqlConnection Conexion = new SqlConnection("Data source =CC-PC\\SQLEXPRESS; Initial Catalog =TGC; User Id =sa; password=sqlserver");
         //SqlConnection Conexion = new SqlConnection("Data source = LAPTOP-QIDIFK7G,49172; Initial Catalog = tgcontrol; User Id = sa; password=sqlserver.2018");
-        SqlConnection Conexion = new SqlConnection("Data source = tcp:RECEPCION-PC,49172; Initial Catalog = totalgym; User Id = sa; password=sqlserver.2018");
+        //SqlConnection Conexion = new SqlConnection("Data source = tcp:RECEPCION-PC,49172; Initial Catalog = totalgym; User Id = sa; password=sqlserver.2018");
+        SqlConnection Conexion = new SqlConnection("Data source = 65.99.252.110; Initial Catalog = ctzmx_tgcontrol; User Id = ctzmx_sa; password=Inttesi#2018");
 
         //Settings1 conexionDatos = new Settings1();
 

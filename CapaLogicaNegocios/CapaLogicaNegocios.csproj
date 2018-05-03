@@ -66,6 +66,7 @@
     <Compile Include="ClsObservacionesCaja.cs" />
     <Compile Include="ClsProductos.cs" />
     <Compile Include="ClsRegistroEntradas.cs" />
+    <Compile Include="ClsSerial.cs" />
     <Compile Include="ClsSocios.cs" />
     <Compile Include="ClsTextoEmail.cs" />
     <Compile Include="ClsUsuario.cs" />

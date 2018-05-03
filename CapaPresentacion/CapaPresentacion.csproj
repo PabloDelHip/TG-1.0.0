@@ -286,6 +286,12 @@
     <Compile Include="FrmInstructores.Designer.cs">
       <DependentUpon>FrmInstructores.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmIntroduceSerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIntroduceSerial.Designer.cs">
+      <DependentUpon>FrmIntroduceSerial.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLockers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -509,6 +515,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmInstructores.resx">
       <DependentUpon>FrmInstructores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmIntroduceSerial.resx">
+      <DependentUpon>FrmIntroduceSerial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLockers.resx">
       <DependentUpon>FrmLockers.cs</DependentUpon>
