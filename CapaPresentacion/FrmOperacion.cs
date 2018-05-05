@@ -1054,10 +1054,29 @@ namespace CapaPresentacion
                         email.Add(TxtEmail.Text);
                         cls_generales.EnviarCorreo(email, textoCorreo, "venta Total Gym", "");
                     }
-                   
-                    string respuestaSMS = cls_generales.enviarSMS(mktCelular.Text, textoSMS.ToString());
 
-                    MessageBox.Show(respuestaSMS);
+
+                    //Fragmento para enviar SMS y descontar del cambios.settings
+                    cambios cm = new cambios();
+                    if(cm.NumeroMensajesSMS > 0)
+                    {   
+                        string respuestaSMS = cls_generales.enviarSMS(mktCelular.Text, textoSMS.ToString());
+                        if (respuestaSMS.Contains("OK"))
+                        {   //si se pudo enviar el mensaje, se descuenta
+                            cm.NumeroMensajesSMS = cm.NumeroMensajesSMS - 1;
+                            cm.Save();
+                            cm.Reload();
+                        }
+                        MessageBox.Show(respuestaSMS);  //puede ser OK (si se envio) u otra cosa si no se pudo
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Ya no se tienen mensajes SMS disponibles");
+                    }
+                    //string respuestaSMS = cls_generales.enviarSMS(mktCelular.Text, textoSMS.ToString());
+                    //MessageBox.Show(respuestaSMS);
+
                     LimpiaFormulario();
                     lista_datos_venta.Clear();
                     dtgVentas.Rows.Clear();
