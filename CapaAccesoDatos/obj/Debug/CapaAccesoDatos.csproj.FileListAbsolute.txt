@@ -27,7 +27,6 @@ C:\Users\Pablo\Documents\Empresa\TG\CapaAccesoDatos\obj\Debug\CapaAccesoDatos.pd
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaAccesoDatos\bin\Debug\CapaAccesoDatos.dll.config
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaAccesoDatos\bin\Debug\CapaAccesoDatos.dll
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaAccesoDatos\bin\Debug\CapaAccesoDatos.pdb
-C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaAccesoDatos\obj\Debug\CapaAccesoDatos.csprojResolveAssemblyReference.cache
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaAccesoDatos\obj\Debug\CapaAccesoDatos.csproj.CoreCompileInputs.cache
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaAccesoDatos\obj\Debug\CapaAccesoDatos.dll
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaAccesoDatos\obj\Debug\CapaAccesoDatos.pdb

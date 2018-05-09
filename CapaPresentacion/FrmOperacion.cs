@@ -1066,8 +1066,15 @@ namespace CapaPresentacion
                             cm.NumeroMensajesSMS = cm.NumeroMensajesSMS - 1;
                             cm.Save();
                             cm.Reload();
+                            MessageBox.Show(respuestaSMS);  //es OK, se produjo el envío
                         }
-                        MessageBox.Show(respuestaSMS);  //puede ser OK (si se envio) u otra cosa si no se pudo
+
+                        else
+                        {   //No se produjo envío, respuestaSMS tiene algo asi: ERROR errNum:yyy      
+                            //yyy es el código de error
+                            MessageBox.Show(TraducirCodigoErrorSMSATexto(respuestaSMS));
+                        }
+                        
                     }
 
                     else
@@ -1738,6 +1745,42 @@ namespace CapaPresentacion
                 MessageBox.Show(respuesta);
             }
         }
+
+
+        private string TraducirCodigoErrorSMSATexto(string respuestaSMS)
+        {
+            //respuestaSMS viene en un formato asi:   ERROR errNum:yyy
+
+            //Dividir la cadena para obtener yyy solamente
+            string[] respuestaSMSDividida = respuestaSMS.Split(':');
+            string codigoErrorBuscado = respuestaSMSDividida[1];
+            codigoErrorBuscado = codigoErrorBuscado.Trim();
+
+            string respuesta = "";
+            Hashtable codigosError = new Hashtable();
+            codigosError.Add("001", "Error interno. Contactar con el soporte técnico");
+            codigosError.Add("002", "Error de acceso al puerto 443. Contactar con el soporte técnico");
+            codigosError.Add("010", "Error en el formato del número de télefono");
+            codigosError.Add("011", "Error en el envío de los parámetros del comando o codificación incorrecta");
+            codigosError.Add("013", "El mensaje excede la longitud máxima permitida");
+            codigosError.Add("014", "La petición HTTP usa una codificación de caracteres inválida");
+            codigosError.Add("015", "No hay destinatarios válidos para enviar el mensaje");
+            codigosError.Add("016", "Destinatario duplicado");
+            codigosError.Add("017", "Mensaje vacío");
+            codigosError.Add("020", "Error en la autentificación");
+            codigosError.Add("022", "El remitente seleccionado para el envío no es válido");
+            codigosError.Add("030", "La url y el mensaje superan la longitud máxima permitida");
+            codigosError.Add("031", " La longitud de la url es incorrecta");
+            codigosError.Add("032", "La url contiene caracteres no permitidos");
+            codigosError.Add("033", "El puerto destino del SMS es incorrecto");
+            codigosError.Add("034", "El puerto origen del SMS en incorrecto");
+
+            //obtener el codigo de error si esta en la tabla
+            respuesta = codigosError.ContainsKey(codigoErrorBuscado) ? codigosError[codigoErrorBuscado].ToString() : "Codigo de error no contemplado en codigo, originado desde ALTIRIA";
+            return (respuesta);
+        }
+
+
     }
 
     class datosVenta
