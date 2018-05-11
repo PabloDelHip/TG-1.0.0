@@ -630,6 +630,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="musica.mp3" />
+    <None Include="Resources\icoInicio.png" />
+    <None Include="Resources\icoVentas.png" />
+    <None Include="Resources\icoUsuarios.png" />
+    <None Include="Resources\icoSocios.png" />
+    <None Include="Resources\icoSms.png" />
+    <None Include="Resources\icoOperaciones.png" />
+    <None Include="Resources\icoLocker.png" />
+    <None Include="Resources\icoInstructor.png" />
+    <None Include="Resources\icoHistorialObservaciones.png" />
+    <None Include="Resources\icoHistorialCortesCaja.png" />
+    <None Include="Resources\icoConfiguracion.png" />
+    <None Include="Resources\icoCaja.png" />
     <None Include="Resources\cerrar.png" />
     <None Include="Resources\minimizar.png" />
     <None Include="Resources\money-1.png" />
