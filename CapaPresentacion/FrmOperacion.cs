@@ -944,22 +944,51 @@ namespace CapaPresentacion
                 {
                     SubtotalAPagar += lista_datos_venta[i].Monto;
                 }
-                FrmPagoVenta frm_pago_venta = new FrmPagoVenta(SubtotalAPagar);
+                FrmPagoVenta frm_pago_venta = new FrmPagoVenta(SubtotalAPagar);  //Se inicializa Login.tipoPago
                 frm_pago_venta.ShowDialog();
                 if (Login.Pago)
                 {
-                    this.Cursor = Cursors.WaitCursor;
-                    double total_a_pagar_Iva = (SubtotalAPagar * 0.16);
-                    double total_a_pagar = SubtotalAPagar + total_a_pagar_Iva;
-                    cls_hdr_venta_hist.m_IdSocio = Convert.ToInt32(TxtIdSocio.Text);
-                    cls_hdr_venta_hist.m_Subtotal = SubtotalAPagar;
-                    cls_hdr_venta_hist.m_IVA = total_a_pagar_Iva;
-                    cls_hdr_venta_hist.m_Total = total_a_pagar;
-                    cls_hdr_venta_hist.m_User_modif = Login.nombre;
-                    cls_hdr_venta_hist.m_tipoPago = Login.tipoPago;
 
+                        this.Cursor = Cursors.WaitCursor;
+                        double total_a_pagar_Iva = (SubtotalAPagar * 0.16);
+                        double total_a_pagar = SubtotalAPagar + total_a_pagar_Iva;
 
-                    FolioVenta = Convert.ToInt32(cls_hdr_venta_hist.guardarVenta());
+                        if(Login.tipoPago == 0 || Login.tipoPago==1)
+                        {
+                            cls_hdr_venta_hist.m_IdSocio = Convert.ToInt32(TxtIdSocio.Text);
+                            cls_hdr_venta_hist.m_Subtotal = SubtotalAPagar;
+                            cls_hdr_venta_hist.m_IVA = total_a_pagar_Iva;
+                            cls_hdr_venta_hist.m_Total = total_a_pagar;
+                            cls_hdr_venta_hist.m_User_modif = Login.nombre;
+                            cls_hdr_venta_hist.m_tipoPago = Login.tipoPago;
+
+                            FolioVenta = Convert.ToInt32(cls_hdr_venta_hist.guardarVenta());
+                        }
+
+                    
+
+                    else
+                    {  //Login.tipoPago = 2 , pago Efectivo-tarjeta
+
+                        cls_hdr_venta_hist.m_IdSocio = Convert.ToInt32(TxtIdSocio.Text);
+                        cls_hdr_venta_hist.m_Subtotal = SubtotalAPagar;
+                        cls_hdr_venta_hist.m_IVA = total_a_pagar_Iva;
+                        cls_hdr_venta_hist.m_Total = total_a_pagar;
+                        cls_hdr_venta_hist.m_User_modif = Login.nombre;
+                        cls_hdr_venta_hist.m_tipoPago = Login.tipoPago;
+
+                        FolioVenta = Convert.ToInt32(cls_hdr_venta_hist.GuardarVenta_PagoEfectivoYTarjeta(0) );
+
+                        cls_hdr_venta_hist.m_IdSocio = Convert.ToInt32(TxtIdSocio.Text);
+                        cls_hdr_venta_hist.m_Subtotal = 0;
+                        cls_hdr_venta_hist.m_IVA = 0;
+                        cls_hdr_venta_hist.m_Total = 0;
+                        cls_hdr_venta_hist.m_User_modif = Login.nombre;
+                        cls_hdr_venta_hist.m_tipoPago = Login.tipoPago;
+
+                        FolioVenta = Convert.ToInt32(cls_hdr_venta_hist.GuardarVenta_PagoEfectivoYTarjeta(FolioVenta));
+                    }
+
                     string idSocio="";
                     string nombreVenta="";
 
@@ -1057,7 +1086,7 @@ namespace CapaPresentacion
 
 
                     //Fragmento para enviar SMS y descontar del cambios.settings
-                    cambios cm = new cambios();
+                    /*cambios cm = new cambios();
                     if(cm.NumeroMensajesSMS > 0)
                     {   
                         string respuestaSMS = cls_generales.enviarSMS(mktCelular.Text, textoSMS.ToString());
@@ -1066,7 +1095,7 @@ namespace CapaPresentacion
                             cm.NumeroMensajesSMS = cm.NumeroMensajesSMS - 1;
                             cm.Save();
                             cm.Reload();
-                            MessageBox.Show(respuestaSMS);  //es OK, se produjo el envío
+                            MessageBox.Show("Se ha enviado SMS " + respuestaSMS);  //es OK, se produjo el envío
                         }
 
                         else
@@ -1080,7 +1109,7 @@ namespace CapaPresentacion
                     else
                     {
                         MessageBox.Show("Ya no se tienen mensajes SMS disponibles");
-                    }
+                    }*/
                     //string respuestaSMS = cls_generales.enviarSMS(mktCelular.Text, textoSMS.ToString());
                     //MessageBox.Show(respuestaSMS);
 

@@ -91,5 +91,37 @@ namespace CapaLogicaNegocios
         }
 
 
+        public string GuardarVenta_PagoEfectivoYTarjeta(int folioVentaBuscado)
+        {
+            string mensaje = "";
+            List<ClsParametros> lst = new List<ClsParametros>();
+
+            try
+            {
+                // armamos la clase para el cuerpo del procedimiento
+                // Parametros de entrada
+                lst.Add(new ClsParametros("@idSocio", m_IdSocio));
+                lst.Add(new ClsParametros("@Subtotal", m_Subtotal));
+                lst.Add(new ClsParametros("@IVA", m_IVA));
+                lst.Add(new ClsParametros("@Total", m_Total));
+                lst.Add(new ClsParametros("@User_modif", m_User_modif));
+                lst.Add(new ClsParametros("@tipoPago", m_tipoPago));
+                lst.Add(new ClsParametros("@FolioVentaBuscado", folioVentaBuscado));
+                /*Mensaje de salida*/
+                lst.Add(new ClsParametros("@FolioVenta", SqlDbType.VarChar, 40));
+                M.Ejecutar_sp("pa_GuardarVenta_PagoEfectivoYTarjeta", lst);
+                //Retornamos el mensaje  de salida del SP
+                mensaje = lst[7].Valor.ToString();/////.valor 
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return mensaje;
+
+        }
+
     }
 }
