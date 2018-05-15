@@ -971,20 +971,20 @@ namespace CapaPresentacion
                     {  //Login.tipoPago = 2 , pago Efectivo-tarjeta
 
                         cls_hdr_venta_hist.m_IdSocio = Convert.ToInt32(TxtIdSocio.Text);
-                        cls_hdr_venta_hist.m_Subtotal = SubtotalAPagar;
-                        cls_hdr_venta_hist.m_IVA = total_a_pagar_Iva;
-                        cls_hdr_venta_hist.m_Total = total_a_pagar;
+                        cls_hdr_venta_hist.m_Subtotal = frm_pago_venta.cantidadAPagarEnEfectivo;
+                        cls_hdr_venta_hist.m_IVA = (frm_pago_venta.cantidadAPagarEnEfectivo) * 0.16;
+                        cls_hdr_venta_hist.m_Total = cls_hdr_venta_hist.m_Subtotal + cls_hdr_venta_hist.m_IVA;
                         cls_hdr_venta_hist.m_User_modif = Login.nombre;
-                        cls_hdr_venta_hist.m_tipoPago = Login.tipoPago;
+                        cls_hdr_venta_hist.m_tipoPago = 0;
 
                         FolioVenta = Convert.ToInt32(cls_hdr_venta_hist.GuardarVenta_PagoEfectivoYTarjeta(0) );
 
                         cls_hdr_venta_hist.m_IdSocio = Convert.ToInt32(TxtIdSocio.Text);
-                        cls_hdr_venta_hist.m_Subtotal = 0;
-                        cls_hdr_venta_hist.m_IVA = 0;
-                        cls_hdr_venta_hist.m_Total = 0;
+                        cls_hdr_venta_hist.m_Subtotal = frm_pago_venta.cantidadAPagarEnTarjeta;
+                        cls_hdr_venta_hist.m_IVA = frm_pago_venta.cantidadAPagarEnTarjeta * 0.16;
+                        cls_hdr_venta_hist.m_Total = cls_hdr_venta_hist.m_Subtotal + cls_hdr_venta_hist.m_IVA;
                         cls_hdr_venta_hist.m_User_modif = Login.nombre;
-                        cls_hdr_venta_hist.m_tipoPago = Login.tipoPago;
+                        cls_hdr_venta_hist.m_tipoPago = 1;
 
                         FolioVenta = Convert.ToInt32(cls_hdr_venta_hist.GuardarVenta_PagoEfectivoYTarjeta(FolioVenta));
                     }
@@ -1086,7 +1086,7 @@ namespace CapaPresentacion
 
 
                     //Fragmento para enviar SMS y descontar del cambios.settings
-                    /*cambios cm = new cambios();
+                    cambios cm = new cambios();
                     if(cm.NumeroMensajesSMS > 0)
                     {   
                         string respuestaSMS = cls_generales.enviarSMS(mktCelular.Text, textoSMS.ToString());
@@ -1109,9 +1109,8 @@ namespace CapaPresentacion
                     else
                     {
                         MessageBox.Show("Ya no se tienen mensajes SMS disponibles");
-                    }*/
-                    //string respuestaSMS = cls_generales.enviarSMS(mktCelular.Text, textoSMS.ToString());
-                    //MessageBox.Show(respuestaSMS);
+                    }
+
 
                     LimpiaFormulario();
                     lista_datos_venta.Clear();

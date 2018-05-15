@@ -15,17 +15,25 @@ namespace CapaPresentacion
     public partial class FrmPagoVenta : Form
     {
         double totalAPagar;
+        public double cantidadAPagarEnEfectivo;
+        public double cantidadAPagarEnTarjeta;
+
+
         public FrmPagoVenta(double totalAPagar)
         {
             this.totalAPagar = totalAPagar;
             InitializeComponent();
+
+            this.cantidadAPagarEnEfectivo = 0.0;
+            this.cantidadAPagarEnTarjeta = 0.0;
+            DeshabilitarLabelsPagoTarjetaYEfectivo();
+            DeshabilitaTextBoxsPagoTarjetaYEfectivo();
         }
 
         private void FrmPagoVenta_Load(object sender, EventArgs e)
         {
             txtTotalAPagar.Text = totalAPagar.ToString();
             
-
         }
 
         private void realizarVenta()
@@ -33,43 +41,47 @@ namespace CapaPresentacion
 
             if (MessageBox.Show("Realizar venta?", "Continuar", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+
                 if(cmbTipoPago.Text.Equals("Efectivo-Tarjeta"))
                 {
-                    double suma = Convert.ToDouble(textBox1.Text) + Convert.ToDouble(textBox2.Text);
-                    txtCantidad.Text = suma.ToString();
-                }
-
-                double cantidadEntregada = Convert.ToDouble(txtCantidad.Text);
-                if (cantidadEntregada < totalAPagar)
-                {
-                    MessageBox.Show("El efectivo ingresado no es suficiente");
-                }
-                else if (cmbTipoPago.Text.Equals(""))
-                {
-                    MessageBox.Show("Favor de seleccionar el metodo de pago");
-                }
-                else
-                {
-                    if (cmbTipoPago.Text.Equals("Efectivo"))
-                    {
-                        Login.tipoPago = 0;
-                    }
-                    else if (cmbTipoPago.Text.Equals("Tarjeta"))
-                    {
-                        Login.tipoPago = 1;
-                    }
-
-                    else if(cmbTipoPago.Text.Equals("Efectivo-Tarjeta"))
-                    {
-                        Login.tipoPago = 2;
-                    }
-
-                    double cambio = cantidadEntregada - totalAPagar;
-                    MessageBox.Show("Cambio: " + cambio.ToString());
+                    Login.tipoPago = 2;
                     Login.Pago = true;
                     this.Hide();
-
+                    this.cantidadAPagarEnTarjeta = Convert.ToDouble(textBox1.Text);
+                    this.cantidadAPagarEnEfectivo = Convert.ToDouble(textBox2.Text);
                 }
+
+                else
+                {
+                    double cantidadEntregada = Convert.ToDouble(txtCantidad.Text);
+                    if (cantidadEntregada < totalAPagar)
+                    {
+                        MessageBox.Show("El efectivo ingresado no es suficiente");
+                    }
+                    else if (cmbTipoPago.Text.Equals(""))
+                    {
+                        MessageBox.Show("Favor de seleccionar el metodo de pago");
+                    }
+                    else
+                    {
+                        if (cmbTipoPago.Text.Equals("Efectivo"))
+                        {
+                            Login.tipoPago = 0;
+                        }
+                        else if (cmbTipoPago.Text.Equals("Tarjeta"))
+                        {
+                            Login.tipoPago = 1;
+                        }
+
+                        double cambio = cantidadEntregada - totalAPagar;
+                        MessageBox.Show("Cambio: " + cambio.ToString());
+                        Login.Pago = true;
+                        this.Hide();
+
+                    }
+                }
+
+
             }
         }
 
@@ -83,22 +95,43 @@ namespace CapaPresentacion
             string textoSeleccionado = cmbTipoPago.SelectedItem.ToString();
             if (  textoSeleccionado.Equals("Efectivo-Tarjeta")  )
             {
-                HabilitaControls_PagoEfectYTarjeta();
-                textBox1.Clear();
-                textBox2.Clear();
-                txtCantidad.Clear();
-                txtCantidad.Enabled = false;
-                recibio.Enabled = false;
+                DeshabilitaLimpiaTxtBoxYLabel_Recibio();
+                HabilitarLabelsPagoTarjetaYEfectivo();
+                LimpiarTextBoxsPagoTarjetaYEfectivo();
+
+                FrmPagoVentaEfectivoTarjeta frmPagoVentaEfectivoTarjeta = new FrmPagoVentaEfectivoTarjeta(totalAPagar);
+                frmPagoVentaEfectivoTarjeta.ShowDialog(this);
+
+                textBox1.Text = frmPagoVentaEfectivoTarjeta.CantidadTomadaDeTarjeta.ToString();
+                textBox2.Text = frmPagoVentaEfectivoTarjeta.CantidadTomadaDeEfectivo.ToString();
+
+                //Examino para ver si no cero el form al hacer click en la X
+                if(    (frmPagoVentaEfectivoTarjeta.CantidadTomadaDeTarjeta == 0.0) && (frmPagoVentaEfectivoTarjeta.CantidadTomadaDeEfectivo== 0.0)    )
+                {
+                    frmPagoVentaEfectivoTarjeta.Dispose();
+                    this.Dispose();
+                }
+
+
+                frmPagoVentaEfectivoTarjeta.Dispose();
+
+
+                
+                
             }
 
             else
-            {  //Dejar en el estado inicial al Form
-                DesHabilitaControls_PagoEfectYTarjeta();
-                textBox1.Clear();
-                textBox2.Clear();
+            {
+                //Volver el form al estado inicial
+                recibio.Enabled = true;
                 txtCantidad.Clear();
                 txtCantidad.Enabled = true;
-                recibio.Enabled = true;
+                DeshabilitarLabelsPagoTarjetaYEfectivo();
+                LimpiarTextBoxsPagoTarjetaYEfectivo();
+                DeshabilitaTextBoxsPagoTarjetaYEfectivo();
+
+                this.cantidadAPagarEnTarjeta = 0.0;
+                this.cantidadAPagarEnEfectivo = 0.0;
             }
         }
 
@@ -111,20 +144,36 @@ namespace CapaPresentacion
         }
 
 
-
-        private void HabilitaControls_PagoEfectYTarjeta()
+        private void HabilitarLabelsPagoTarjetaYEfectivo()
         {
             label2.Enabled = true;
-            textBox1.Enabled = true;
             label4.Enabled = true;
-            textBox2.Enabled = true;
         }
 
-        private void DesHabilitaControls_PagoEfectYTarjeta()
+        private void LimpiarTextBoxsPagoTarjetaYEfectivo()
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+        }
+
+       
+        private void DeshabilitaLimpiaTxtBoxYLabel_Recibio()
+        {
+            recibio.Enabled = false;
+            txtCantidad.Enabled = false;
+            txtCantidad.Clear();
+        }
+
+        private void DeshabilitarLabelsPagoTarjetaYEfectivo()
         {
             label2.Enabled = false;
-            textBox1.Enabled = false;
             label4.Enabled = false;
+        }
+
+
+        private void DeshabilitaTextBoxsPagoTarjetaYEfectivo()
+        {
+            textBox1.Enabled = false;
             textBox2.Enabled = false;
         }
     }

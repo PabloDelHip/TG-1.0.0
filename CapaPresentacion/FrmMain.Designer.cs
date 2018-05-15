@@ -149,21 +149,21 @@
             // deudasToolStripMenuItem
             // 
             this.deudasToolStripMenuItem.Name = "deudasToolStripMenuItem";
-            this.deudasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deudasToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.deudasToolStripMenuItem.Text = "Operaciones";
             this.deudasToolStripMenuItem.Click += new System.EventHandler(this.deudasToolStripMenuItem_Click);
             // 
             // deudasToolStripMenuItem1
             // 
             this.deudasToolStripMenuItem1.Name = "deudasToolStripMenuItem1";
-            this.deudasToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.deudasToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             this.deudasToolStripMenuItem1.Text = "Pagos y adeudos";
             this.deudasToolStripMenuItem1.Click += new System.EventHandler(this.deudasToolStripMenuItem1_Click);
             // 
             // entradasToolStripMenuItem
             // 
             this.entradasToolStripMenuItem.Name = "entradasToolStripMenuItem";
-            this.entradasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entradasToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.entradasToolStripMenuItem.Text = "Entradas";
             this.entradasToolStripMenuItem.Click += new System.EventHandler(this.entradasToolStripMenuItem_Click);
             // 

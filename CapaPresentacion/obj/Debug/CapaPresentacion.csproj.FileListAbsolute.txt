@@ -387,6 +387,7 @@ C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaPresentacion\obj\Debug\CapaPresentac
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaPresentacion\obj\Debug\CapaPresentacion.FrmObservacionesAdeudos.resources
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaPresentacion\obj\Debug\CapaPresentacion.FrmOperacion.resources
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaPresentacion\obj\Debug\CapaPresentacion.FrmPagoVenta.resources
+C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaPresentacion\obj\Debug\CapaPresentacion.FrmPagoVentaEfectivoTarjeta.resources
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaPresentacion\obj\Debug\CapaPresentacion.FrmReporteEntradas.resources
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaPresentacion\obj\Debug\CapaPresentacion.FrmReporteMovCaja.resources
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaPresentacion\obj\Debug\CapaPresentacion.FrmTextoEmails.resources

@@ -334,6 +334,12 @@
     <Compile Include="FrmPagoVenta.Designer.cs">
       <DependentUpon>FrmPagoVenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmPagoVentaEfectivoTarjeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPagoVentaEfectivoTarjeta.Designer.cs">
+      <DependentUpon>FrmPagoVentaEfectivoTarjeta.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmReporteEntradas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -539,6 +545,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPagoVenta.resx">
       <DependentUpon>FrmPagoVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPagoVentaEfectivoTarjeta.resx">
+      <DependentUpon>FrmPagoVentaEfectivoTarjeta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmReporteEntradas.resx">
       <DependentUpon>FrmReporteEntradas.cs</DependentUpon>
