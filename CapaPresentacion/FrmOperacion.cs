@@ -32,6 +32,7 @@ namespace CapaPresentacion
         ClsProductos cls_productos = new ClsProductos();
         ClsMovVisitas cls_mov_visitas = new ClsMovVisitas();
         List<datosVenta> lista_datos_venta = new List<datosVenta>();
+         
         
         DataTable dt;
         bool cortesiaVisita;
@@ -46,6 +47,10 @@ namespace CapaPresentacion
         int claveTipoMembresia;
         int folioVenta;
         bool nuevoSocio;
+
+
+        public List<IMostrarSMSDisponibles> misVentanasSubscriptores = new List<IMostrarSMSDisponibles>();
+
         public FrmOperacion()
         {
             InitializeComponent();
@@ -1085,6 +1090,9 @@ namespace CapaPresentacion
                     }
 
 
+                    //IMostrarSMSDisponibles myfrmMain = misVentanasSubscriptores.First<IMostrarSMSDisponibles>();
+                    //myfrmMain.MostrarSMSDisponibles(65);
+
                     //Fragmento para enviar SMS y descontar del cambios.settings
                     cambios cm = new cambios();
                     if(cm.NumeroMensajesSMS > 0)
@@ -1096,6 +1104,9 @@ namespace CapaPresentacion
                             cm.Save();
                             cm.Reload();
                             MessageBox.Show("Se ha enviado SMS " + respuestaSMS);  //es OK, se produjo el envío
+
+                            IMostrarSMSDisponibles myfrmMain = misVentanasSubscriptores.First<IMostrarSMSDisponibles>();
+                            myfrmMain.MostrarSMSDisponibles(cm.NumeroMensajesSMS);
                         }
 
                         else

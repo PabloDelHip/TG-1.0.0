@@ -15,7 +15,7 @@ using System.Media;
 
 namespace CapaPresentacion
 {
-    public partial class FrmMain : Form
+    public partial class FrmMain : Form, IMostrarSMSDisponibles
     {
         ClsGeneral cls_generales = new ClsGeneral();
         ClsSocios cls_socios = new ClsSocios();
@@ -27,12 +27,15 @@ namespace CapaPresentacion
         public FrmMain()
         {
             InitializeComponent();
+
+            PersonalizarStatusStrip();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             FrmOperacion form3 = new FrmOperacion();
-
+            form3.misVentanasSubscriptores.Add(this);
             form3.MdiParent = this.MdiParent;
 
             form3.Show();
@@ -48,7 +51,7 @@ namespace CapaPresentacion
             //Iniciamos el hilo 
             hilo.Start();
 
-            FrmOperacion abrir = new FrmOperacion();
+            FrmOperacion abrir = new FrmOperacion();  abrir.misVentanasSubscriptores.Add(this);
             AbrirVentanas(abrir);
 
             /*******Enviar correo cumpleañeros********/
@@ -79,6 +82,8 @@ namespace CapaPresentacion
         {
 
             FrmOperacion abrir = new FrmOperacion();
+            abrir.misVentanasSubscriptores.Add(this);
+
             AbrirVentanas(abrir);
         }
 
@@ -165,7 +170,7 @@ namespace CapaPresentacion
         private void deudasToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            FrmOperacion abrir = new FrmOperacion();
+            FrmOperacion abrir = new FrmOperacion();   abrir.misVentanasSubscriptores.Add(this);
             AbrirVentanas(abrir);
         }
 
@@ -370,7 +375,7 @@ namespace CapaPresentacion
 
         private void operacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmOperacion abrir = new FrmOperacion();
+            FrmOperacion abrir = new FrmOperacion();    abrir.misVentanasSubscriptores.Add(this);   
             AbrirVentanas(abrir);
         }
 
@@ -454,5 +459,25 @@ namespace CapaPresentacion
             }
  
         }
+
+        private void PersonalizarStatusStrip()
+        {
+            statusStrip1.BackColor = Color.DarkSlateGray;
+            statusStrip1.ForeColor = Color.White;
+
+            cambios cm = new cambios();
+            toolStripStatusLabel1.Text = "Numero de mensajes SMS disponibles " +cm.NumeroMensajesSMS.ToString();
+        }
+
+        void IMostrarSMSDisponibles.MostrarSMSDisponibles(int numeroSMSs)
+        {
+            toolStripStatusLabel1.Text = "Numero de mensajes SMS disponibles " + numeroSMSs.ToString();
+        }
+    }
+
+    //--------Interface usada para StatusStusStrip
+    public interface IMostrarSMSDisponibles
+    {
+        void MostrarSMSDisponibles(int numeroSMSs);
     }
 }

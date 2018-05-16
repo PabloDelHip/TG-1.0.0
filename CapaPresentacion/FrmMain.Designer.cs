@@ -65,10 +65,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ptbImagenSocio = new System.Windows.Forms.PictureBox();
             this.pPrincipal = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbImagenSocio)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -109,28 +112,28 @@
             // corteToolStripMenuItem
             // 
             this.corteToolStripMenuItem.Name = "corteToolStripMenuItem";
-            this.corteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.corteToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.corteToolStripMenuItem.Text = "Corte";
             this.corteToolStripMenuItem.Click += new System.EventHandler(this.corteToolStripMenuItem_Click);
             // 
             // observacionToolStripMenuItem
             // 
             this.observacionToolStripMenuItem.Name = "observacionToolStripMenuItem";
-            this.observacionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.observacionToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.observacionToolStripMenuItem.Text = "Observacion";
             this.observacionToolStripMenuItem.Click += new System.EventHandler(this.observacionToolStripMenuItem_Click);
             // 
             // membresiasToolStripMenuItem
             // 
             this.membresiasToolStripMenuItem.Name = "membresiasToolStripMenuItem";
-            this.membresiasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.membresiasToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.membresiasToolStripMenuItem.Text = "Membresias";
             this.membresiasToolStripMenuItem.Click += new System.EventHandler(this.membresiasToolStripMenuItem_Click);
             // 
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.productosToolStripMenuItem.Text = "Productos";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
@@ -403,11 +406,28 @@
             this.pPrincipal.Size = new System.Drawing.Size(811, 448);
             this.pPrincipal.TabIndex = 10;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 465);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1370, 22);
+            this.statusStrip1.TabIndex = 11;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 487);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pPrincipal);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
@@ -423,6 +443,8 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbImagenSocio)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -467,5 +489,7 @@
         private System.Windows.Forms.ToolStripMenuItem imprimirTicketToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sMSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem activarSMSToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
