@@ -28,6 +28,65 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
+        public void guardarClave()
+        {
+            // la primera vez que se ejecuta, cambios.Settings esta vacio 
+
+            //Presento formulario para pedir ingreso de serial
+            FrmIntroduceSerial frmIntroduceSerial = new FrmIntroduceSerial();
+            frmIntroduceSerial.ShowDialog(this);
+            string serial = frmIntroduceSerial.Serial;
+            frmIntroduceSerial.Dispose();
+
+            //Recupero detalles de serial desde el servidor
+            ClsSerial clsSerial = new ClsSerial();
+            clsSerial.ClaveConexion = serial;
+            DataTable respuestaTabla = clsSerial.RecuperarSerial();
+
+            if (respuestaTabla.Rows.Count == 1)
+            {
+                //recupero el contenido de la unica fila del DataTable 
+                DataRow fila = respuestaTabla.Rows[0];
+                bool estadoClaveProducto = (fila["estadoClaveConexion"].ToString()) == "True" ? true : false;
+
+
+                if (estadoClaveProducto)  //examino el estado de la clave
+                {
+                    //Modifico el estado de la clave y la fecha de vencimiento en la BD
+                    clsSerial.EstadoClaveConexion = false;
+                    clsSerial.ModificarEnSerial_FechaVencimientoDeClave_EstadoClave();
+
+
+                    //Guardo valores en el archivo .settings local
+                    DataTable otraRespuestaTabla = clsSerial.RecuperarSerial();
+                    DataRow otraFila = otraRespuestaTabla.Rows[0];
+                    cm.ClaveProducto = otraFila["claveConexion"].ToString();
+                    cm.FechaVencimiento = otraFila["fechaVencimientoClaveConexion"].ToString();
+                    cm.NumeroMensajesSMS = Int32.Parse(otraFila["numeroMensajesSMS"].ToString());
+                    cm.Save();
+                    cm.Reload();
+
+                    MessageBox.Show("Se ha guardado serial de la aplicación", "Acerca de serial", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Visible = false;
+                    Application.Exit();
+                }
+
+                else
+                {
+                    MessageBox.Show("Serial no disponible", "Acerca de serial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.Visible = false;
+                    Application.Exit();
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("serial no valido", "Acerca de serial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Visible = false;
+                Application.Exit();
+            }
+        }
+
         private void FrmLogin_Load(object sender, EventArgs e)
         {
 
@@ -49,66 +108,15 @@ namespace CapaPresentacion
             //cm.Reload();
             //this.Visible = false;
             //Application.Exit();
+         
+           
 
-            
+
             try
             {
                   if (cm.FechaVencimiento == "")
-                  { // la primera vez que se ejecuta, cambios.Settings esta vacio 
-
-                      //Presento formulario para pedir ingreso de serial
-                      FrmIntroduceSerial frmIntroduceSerial = new FrmIntroduceSerial();
-                      frmIntroduceSerial.ShowDialog(this);
-                      string serial = frmIntroduceSerial.Serial;                    
-                      frmIntroduceSerial.Dispose();
-
-                      //Recupero detalles de serial desde el servidor
-                      ClsSerial clsSerial = new ClsSerial();
-                      clsSerial.ClaveConexion = serial;
-                      DataTable respuestaTabla = clsSerial.RecuperarSerial();
-
-                      if (respuestaTabla.Rows.Count == 1)
-                      {
-                         //recupero el contenido de la unica fila del DataTable 
-                         DataRow fila = respuestaTabla.Rows[0];                         
-                         bool estadoClaveProducto = (fila["estadoClaveConexion"].ToString()) == "True" ? true : false;
-
-
-                         if(estadoClaveProducto)  //examino el estado de la clave
-                         {
-                             //Modifico el estado de la clave y la fecha de vencimiento en la BD
-                             clsSerial.EstadoClaveConexion = false; 
-                             clsSerial.ModificarEnSerial_FechaVencimientoDeClave_EstadoClave();
-
-
-                             //Guardo valores en el archivo .settings local
-                             DataTable otraRespuestaTabla = clsSerial.RecuperarSerial();
-                             DataRow otraFila = otraRespuestaTabla.Rows[0];
-                             cm.ClaveProducto = otraFila["claveConexion"].ToString();
-                             cm.FechaVencimiento = otraFila["fechaVencimientoClaveConexion"].ToString();
-                             cm.NumeroMensajesSMS = Int32.Parse(otraFila["numeroMensajesSMS"].ToString());
-                             cm.Save();
-                             cm.Reload();
-
-                             MessageBox.Show("Se ha guardado serial de la aplicación", "Acerca de serial", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                             this.Visible = false;
-                             Application.Exit();
-                         }
-
-                         else
-                         {
-                            MessageBox.Show("Serial no disponible", "Acerca de serial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            this.Visible = false;
-                            Application.Exit();
-                         }
-                      }
-
-                      else
-                      {
-                          MessageBox.Show("serial no valido", "Acerca de serial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                          this.Visible = false;
-                          Application.Exit();
-                      }
+                  {
+                    guardarClave();
                   }
 
 
@@ -199,9 +207,10 @@ namespace CapaPresentacion
 
              catch(Exception ex)
              {
-                  MessageBox.Show(ex.Message);
-                  MessageBox.Show(ex.Source);
-                  MessageBox.Show("Error inesperado, la aplicación finalizara su ejecución");
+                guardarClave();
+                  //MessageBox.Show(ex.Message);
+                  //MessageBox.Show(ex.Source);
+                  //MessageBox.Show("Error inesperado, la aplicación finalizara su ejecución");
                   Application.Exit();
              } 
 

@@ -30,7 +30,6 @@
         {
             this.TabUsuario = new System.Windows.Forms.TabControl();
             this.TabGral = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtNumDiasViajero = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -126,7 +125,6 @@
             // 
             // TabGral
             // 
-            this.TabGral.Controls.Add(this.button5);
             this.TabGral.Controls.Add(this.groupBox2);
             this.TabGral.Controls.Add(this.button1);
             this.TabGral.Controls.Add(this.button4);
@@ -141,16 +139,6 @@
             this.TabGral.TabIndex = 0;
             this.TabGral.Text = "Generales";
             this.TabGral.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(8, 484);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 28;
-            this.button5.Text = "No tocar";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_3);
             // 
             // groupBox2
             // 
@@ -1003,6 +991,5 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox chkDiasViajero;
-        private System.Windows.Forms.Button button5;
     }
 }

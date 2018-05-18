@@ -12,7 +12,7 @@ namespace CapaPresentacion {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.5.0.0")]
     internal sealed partial class cambios : global::System.Configuration.ApplicationSettingsBase {
         
         private static cambios defaultInstance = ((cambios)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new cambios())));
@@ -44,18 +44,6 @@ namespace CapaPresentacion {
             }
             set {
                 this["ClaveProducto"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string FechaVencimiento {
-            get {
-                return ((string)(this["FechaVencimiento"]));
-            }
-            set {
-                this["FechaVencimiento"] = value;
             }
         }
         
@@ -128,6 +116,18 @@ namespace CapaPresentacion {
             }
             set {
                 this["NumeroMensajesSMS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FechaVencimiento {
+            get {
+                return ((string)(this["FechaVencimiento"]));
+            }
+            set {
+                this["FechaVencimiento"] = value;
             }
         }
     }

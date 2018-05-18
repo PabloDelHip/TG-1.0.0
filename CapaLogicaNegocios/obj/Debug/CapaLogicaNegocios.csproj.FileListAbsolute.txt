@@ -43,3 +43,12 @@ C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\obj\Debug\CapaLogicaN
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\obj\Debug\CapaLogicaNegocios.csproj.CopyComplete
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\obj\Debug\CapaLogicaNegocios.dll
 C:\Users\cruz\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\obj\Debug\CapaLogicaNegocios.pdb
+C:\Users\Pablo\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\bin\Debug\CapaLogicaNegocios.dll
+C:\Users\Pablo\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\bin\Debug\CapaLogicaNegocios.pdb
+C:\Users\Pablo\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\bin\Debug\CapaAccesoDatos.dll
+C:\Users\Pablo\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\bin\Debug\CapaAccesoDatos.pdb
+C:\Users\Pablo\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\bin\Debug\CapaAccesoDatos.dll.config
+C:\Users\Pablo\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\obj\Debug\CapaLogicaNegocios.csprojResolveAssemblyReference.cache
+C:\Users\Pablo\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\obj\Debug\CapaLogicaNegocios.csproj.CoreCompileInputs.cache
+C:\Users\Pablo\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\obj\Debug\CapaLogicaNegocios.dll
+C:\Users\Pablo\Documents\GitHub\TG-1.0.0\CapaLogicaNegocios\obj\Debug\CapaLogicaNegocios.pdb
